@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACCT101 Exam 2 Official Quiz - Units 6-8</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #f5576c;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background: #f5576c;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .options {
+            margin-left: 10px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #f8f9fa;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .option label {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .input-group input {
+            width: 200px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #f5576c;
+        }
+
+        .hint-btn, .check-btn {
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-right: 10px;
+            transition: background 0.3s;
+        }
+
+        .hint-btn {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .hint-btn:hover {
+            background: #ffca2c;
+        }
+
+        .check-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .check-btn:hover {
+            background: #218838;
+        }
+
+        .button-group {
+            margin-top: 10px;
+        }
+
+        .hint {
+            display: none;
+            margin-top: 10px;
+            padding: 12px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            color: #856404;
+        }
+
+        .hint.show {
+            display: block;
+        }
+
+        .feedback {
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+            display: block;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .data-table th {
+            background: #f093fb;
+            color: white;
+        }
+
+        .inline-input {
+            width: 120px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ACCT101 Exam 2 Official Quiz</h1>
+        <p class="subtitle">Units 06-08: Merchandising, Cash & Internal Controls, Inventory | 28 Questions</p>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar">0/28 (0%)</div>
+        </div>
+
+        <!-- UNIT 06: MERCHANDISING OPERATIONS -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">1</span>
+                Unit 06: Merchandising Operations (12 Questions)
+            </div>
+
+            <!-- Q1a -->
+            <div class="question">
+                <div class="question-text">1. A corporation uses the perpetual inventory and gross method. On March 1, it purchased $80,000 of inventory, terms 2/10, n/30. On March 3, it returned $8,000 of goods. On March 9, it paid the supplier. What is the net cost?</div>
+                <div class="input-group">
+                    <label for="q1a-input">Net Cost = $</label>
+                    <input type="number" id="q1a-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint1a')">Show Hint</button>
+                <div class="hint" id="hint1a">($80,000 - $8,000) × 0.98 = $72,000 × 0.98</div>
+                <div class="feedback" id="feedback1a"></div>
+            </div>
+
+            <!-- Q1b -->
+            <div class="question">
+                <div class="question-text">2. A corporation uses perpetual inventory and gross method. On April 10, purchased $50,000, terms 3/15, n/30. On April 15, returned $5,000. On April 22, paid supplier. How much purchase discount was taken?</div>
+                <div class="input-group">
+                    <label for="q1b-input">Purchase Discount = $</label>
+                    <input type="number" id="q1b-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint1b')">Show Hint</button>
+                <div class="hint" id="hint1b">($50,000 - $5,000) × 0.03</div>
+                <div class="feedback" id="feedback1b"></div>
+            </div>
+
+            <!-- Q2a -->
+            <div class="question">
+                <div class="question-text">3. Jan. 10: Liana Lions purchased $13,000 merchandise, terms 2/10, n/30, FOB shipping point from Gabrielle Gators. What is the buyer's (Liana Lions) purchase entry?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q2a" id="q2a-a" value="a">
+                        <label for="q2a-a">DR Merchandise Inventory $13,000; CR Accounts Payable $13,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2a" id="q2a-b" value="b">
+                        <label for="q2a-b">DR Merchandise Inventory $12,740; CR Accounts Payable $12,740</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2a" id="q2a-c" value="c">
+                        <label for="q2a-c">DR Purchases $13,000; CR Accounts Payable $13,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2a" id="q2a-d" value="d">
+                        <label for="q2a-d">DR Cash $13,000; CR Merchandise Inventory $13,000</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint2a')">Show Hint</button>
+                <div class="hint" id="hint2a">Perpetual + gross method = record at full invoice amount</div>
+                <div class="feedback" id="feedback2a"></div>
+            </div>
+
+            <!-- Q2b -->
+            <div class="question">
+                <div class="question-text">4. Same transaction: What entries should seller (Gabrielle Gators) record on Jan. 10? (Cost was $9,200)</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q2b" id="q2b-a" value="a">
+                        <label for="q2b-a">DR A/R $13,000; CR Sales $13,000 AND DR COGS $9,200; CR Inventory $9,200</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2b" id="q2b-b" value="b">
+                        <label for="q2b-b">DR A/R $12,740; CR Sales $12,740 AND DR COGS $9,200; CR Inventory $9,200</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2b" id="q2b-c" value="c">
+                        <label for="q2b-c">DR Cash $13,000; CR Sales $13,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2b" id="q2b-d" value="d">
+                        <label for="q2b-d">DR A/R $13,000; CR Sales $13,000 (only)</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint2b')">Show Hint</button>
+                <div class="hint" id="hint2b">Perpetual system needs TWO entries: sale + cost</div>
+                <div class="feedback" id="feedback2b"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question">
+                <div class="question-text">5. June 13 sale: $8,750, terms 4/10, n/30. June 16: $500 return. June 23: customer paid. How much cash received?</div>
+                <div class="input-group">
+                    <label for="q3-input">Cash Received = $</label>
+                    <input type="number" id="q3-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint3')">Show Hint</button>
+                <div class="hint" id="hint3">($8,750 - $500) × 0.96</div>
+                <div class="feedback" id="feedback3"></div>
+            </div>
+
+            <!-- Q4a -->
+            <div class="question">
+                <div class="question-text">6. Fred Fryers: Sales $10,200,000; Sales returns $277,000; Sales discounts $6,750. What is net sales?</div>
+                <div class="input-group">
+                    <label for="q4a-input">Net sales = $</label>
+                    <input type="number" id="q4a-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint4a')">Show Hint</button>
+                <div class="hint" id="hint4a">Net Sales = Sales - Returns - Discounts</div>
+                <div class="feedback" id="feedback4a"></div>
+            </div>
+
+            <!-- Q4b -->
+            <div class="question">
+                <div class="question-text">7. Fred Fryers: Purchases $4,730,000; Purch returns $14,745; Purchase discounts $2,400; Freight in $3,000. What is net purchases?</div>
+                <div class="input-group">
+                    <label for="q4b-input">Net purchases = $</label>
+                    <input type="number" id="q4b-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint4b')">Show Hint</button>
+                <div class="hint" id="hint4b">Net Purch = Purch - Returns - Disc + Freight</div>
+                <div class="feedback" id="feedback4b"></div>
+            </div>
+
+            <!-- Q4c -->
+            <div class="question">
+                <div class="question-text">8. Fred Fryers: Inventory Jan 1 $2,700,000; Net purchases (from Q7) $4,715,855; Inventory Dec 31 $4,875,000. What is COGS?</div>
+                <div class="input-group">
+                    <label for="q4c-input">Cost of goods sold = $</label>
+                    <input type="number" id="q4c-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint4c')">Show Hint</button>
+                <div class="hint" id="hint4c">COGS = Beg Inv + Net Purch - End Inv</div>
+                <div class="feedback" id="feedback4c"></div>
+            </div>
+
+            <!-- Q4d -->
+            <div class="question">
+                <div class="question-text">9. Fred Fryers: Net sales (from Q6) $9,916,250; COGS (from Q8) $2,540,855. What is gross profit?</div>
+                <div class="input-group">
+                    <label for="q4d-input">Gross profit = $</label>
+                    <input type="number" id="q4d-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint4d')">Show Hint</button>
+                <div class="hint" id="hint4d">Gross Profit = Net Sales - COGS</div>
+                <div class="feedback" id="feedback4d"></div>
+            </div>
+
+            <!-- Q12a -->
+            <div class="question">
+                <div class="question-text">10. Martin Co purchases $4,200 merchandise on March 1, terms 3/10, n/30. If paid on March 1, what is the cost?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12a" id="q12a-a" value="a">
+                        <label for="q12a-a">$3,780</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12a" id="q12a-b" value="b">
+                        <label for="q12a-b">$4,074</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12a" id="q12a-c" value="c">
+                        <label for="q12a-c">$4,200</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12a" id="q12a-d" value="d">
+                        <label for="q12a-d">$3,864</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint12a')">Show Hint</button>
+                <div class="hint" id="hint12a">3/10 means 3% discount if paid within 10 days</div>
+                <div class="feedback" id="feedback12a"></div>
+            </div>
+
+            <!-- Q12b -->
+            <div class="question">
+                <div class="question-text">11. Sales revenue $10,000. Sales returns $500, sales discounts $1,000. What is net sales?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12b" id="q12b-a" value="a">
+                        <label for="q12b-a">$10,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12b" id="q12b-b" value="b">
+                        <label for="q12b-b">$8,500</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12b" id="q12b-c" value="c">
+                        <label for="q12b-c">$10,500</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12b" id="q12b-d" value="d">
+                        <label for="q12b-d">$11,500</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback12b"></div>
+            </div>
+
+            <!-- Q12c -->
+            <div class="question">
+                <div class="question-text">12. Net income $15,000, operating expenses $20,000, net sales $75,000. What is COGS?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12c" id="q12c-a" value="a">
+                        <label for="q12c-a">$40,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12c" id="q12c-b" value="b">
+                        <label for="q12c-b">$60,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12c" id="q12c-c" value="c">
+                        <label for="q12c-c">$15,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12c" id="q12c-d" value="d">
+                        <label for="q12c-d">$55,000</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint12c')">Show Hint</button>
+                <div class="hint" id="hint12c">Net Sales - COGS - Op Exp = Net Income</div>
+                <div class="feedback" id="feedback12c"></div>
+            </div>
+        </div>
+
+        <!-- UNIT 07: CASH & BANK RECONCILIATION -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">2</span>
+                Unit 07: Cash & Internal Controls (9 Questions)
+            </div>
+
+            <!-- Q5 -->
+            <div class="question">
+                <div class="question-text">13. What is cash and cash equivalents?</div>
+                <table class="data-table" style="max-width: 500px;">
+                    <tr><th>Item</th><th>Amount</th></tr>
+                    <tr><td>Bank accounts (all)</td><td>$82,000</td></tr>
+                    <tr><td>Currency and coin</td><td>$1,000</td></tr>
+                    <tr><td>Commercial paper (10 days)</td><td>$35,000</td></tr>
+                    <tr><td>Undeposited checks</td><td>$1,400</td></tr>
+                    <tr><td>Petty cash</td><td>$300</td></tr>
+                    <tr><td>Treasury Bond (1 year)</td><td>$52,000</td></tr>
+                    <tr><td>Debt securities (6 mo)</td><td>$230,000</td></tr>
+                    <tr><td>CD (90 days)</td><td>$5,000</td></tr>
+                    <tr><td>Restricted cash</td><td>$48,000</td></tr>
+                </table>
+                <div class="input-group">
+                    <label for="q5-input">Cash & Cash Equivalents = $</label>
+                    <input type="number" id="q5-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint5')">Show Hint</button>
+                <div class="hint" id="hint5">Include: bank, currency, commercial paper <90d, undeposited checks, petty cash, CD ≤90d. Exclude: restricted, >90 days</div>
+                <div class="feedback" id="feedback5"></div>
+            </div>
+
+            <!-- Q12d -->
+            <div class="question">
+                <div class="question-text">14. Cash on hand $1,000; checking $3,000; savings $5,000; postage stamps $50; Treasury bills <90 days $10,000. What is cash & cash equivalents?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12d" id="q12d-a" value="a">
+                        <label for="q12d-a">$19,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12d" id="q12d-b" value="b">
+                        <label for="q12d-b">$9,050</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12d" id="q12d-c" value="c">
+                        <label for="q12d-c">$9,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12d" id="q12d-d" value="d">
+                        <label for="q12d-d">$19,050</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint12d')">Show Hint</button>
+                <div class="hint" id="hint12d">Exclude postage stamps (supplies, not cash)</div>
+                <div class="feedback" id="feedback12d"></div>
+            </div>
+
+            <!-- Q12e -->
+            <div class="question">
+                <div class="question-text">15. Jones Co May reconciliation: Book balance $5,300; Deposits in transit $10; Notes collected $580; Bank charges $30; Outstanding checks $180; NSF $150. Adjusted book balance?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12e" id="q12e-a" value="a">
+                        <label for="q12e-a">$5,700</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12e" id="q12e-b" value="b">
+                        <label for="q12e-b">$5,210</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12e" id="q12e-c" value="c">
+                        <label for="q12e-c">$5,810</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12e" id="q12e-d" value="d">
+                        <label for="q12e-d">$5,660</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint12e')">Show Hint</button>
+                <div class="hint" id="hint12e">Book adjustments: +Notes, -Charges, -NSF. Ignore deposits/outstanding (those adjust bank)</div>
+                <div class="feedback" id="feedback12e"></div>
+            </div>
+
+            <!-- Q12f -->
+            <div class="question">
+                <div class="question-text">16. Barker Co: Bank balance $21,000; Note collected $9,000; Outstanding $6,000; Deposits in transit $5,400; Bank charges $85; NSF $2,100. What is UNADJUSTED book balance?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12f" id="q12f-a" value="a">
+                        <label for="q12f-a">$13,585</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12f" id="q12f-b" value="b">
+                        <label for="q12f-b">$27,815</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12f" id="q12f-c" value="c">
+                        <label for="q12f-c">$20,400</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12f" id="q12f-d" value="d">
+                        <label for="q12f-d">$6,815</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint12f')">Show Hint</button>
+                <div class="hint" id="hint12f">First find adjusted bank: $21,000 + $5,400 - $6,000. Then work backwards from book adjustments</div>
+                <div class="feedback" id="feedback12f"></div>
+            </div>
+
+            <!-- Q9a -->
+            <div class="question">
+                <div class="question-text">17. Petty cash $300 fund. On 15th: drawer has $180 cash + $115 receipts. Cash short or over?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q9a" id="q9a-a" value="a">
+                        <label for="q9a-a">$5 shortage</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9a" id="q9a-b" value="b">
+                        <label for="q9a-b">$5 overage</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9a" id="q9a-c" value="c">
+                        <label for="q9a-c">$20 shortage</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9a" id="q9a-d" value="d">
+                        <label for="q9a-d">No shortage or overage</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint9a')">Show Hint</button>
+                <div class="hint" id="hint9a">Cash + Receipts should = Fund. $180 + $115 = ?</div>
+                <div class="feedback" id="feedback9a"></div>
+            </div>
+
+            <!-- Q9b -->
+            <div class="question">
+                <div class="question-text">18. Petty cash $500 fund replenished. Entry: CR Cash $463, CR Cash Short/Over $2. How much expended?</div>
+                <div class="input-group">
+                    <label for="q9b-input">Amount Expended = $</label>
+                    <input type="number" id="q9b-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint9b')">Show Hint</button>
+                <div class="hint" id="hint9b">Total credits = debits. $463 + $2 = ?</div>
+                <div class="feedback" id="feedback9b"></div>
+            </div>
+
+            <!-- Q6 Roper -->
+            <div class="question">
+                <div class="question-text">19. Roper Electronics bank reconciliation: Bank balance $11,740; Outstanding checks #613 $155 and #61 $420; Deposit in transit $6,900; Note collected by bank $5,000 + interest $250; Collection fee $35; Service charge $20; NSF check $68; Book balance $12,938. What is the adjusted balance?</div>
+                <div class="input-group">
+                    <label for="q6-input">Adjusted Balance = $</label>
+                    <input type="number" id="q6-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint6')">Show Hint</button>
+                <div class="hint" id="hint6">Bank: $11,740 + $6,900 - $155 - $420. Books: $12,938 + $5,000 + $250 - $35 - $20 - $68. Should equal!</div>
+                <div class="feedback" id="feedback6"></div>
+            </div>
+
+            <!-- Q7 Leslie -->
+            <div class="question">
+                <div class="question-text">20. Leslie's Electronics: Bank $19,450; Deposit in transit $1,330; Outstanding #901 $810, #944 $263; Book balance $11,232; Service charge $35; EFT rent collection $9,400; Interest $10; Error: recorded $6,500 should be $5,600. What is adjusted balance?</div>
+                <div class="input-group">
+                    <label for="q7-input">Adjusted Balance = $</label>
+                    <input type="number" id="q7-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint7')">Show Hint</button>
+                <div class="hint" id="hint7">Bank: $19,450 + $1,330 - $810 - $263. Books: $11,232 - $35 + $9,400 + $10 - $900 (error correction)</div>
+                <div class="feedback" id="feedback7"></div>
+            </div>
+
+            <!-- Q8 Penny -->
+            <div class="question">
+                <div class="question-text">21. Penny Partners established petty cash $1,000 in year 1, raised to $1,200 in year 2, reduced to $350 in year 3. What is the year 2 increase entry?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q8" id="q8-a" value="a">
+                        <label for="q8-a">DR Petty Cash $200; CR Cash $200</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" id="q8-b" value="b">
+                        <label for="q8-b">DR Petty Cash $1,200; CR Cash $1,200</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" id="q8-c" value="c">
+                        <label for="q8-c">DR Cash $200; CR Petty Cash $200</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" id="q8-d" value="d">
+                        <label for="q8-d">No entry needed</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint8')">Show Hint</button>
+                <div class="hint" id="hint8">Increasing from $1,000 to $1,200 = $200 increase</div>
+                <div class="feedback" id="feedback8"></div>
+            </div>
+        </div>
+
+        <!-- UNIT 08: INVENTORY -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">3</span>
+                Unit 08: Merchandise Inventory (7 Questions)
+            </div>
+
+            <!-- Q10a -->
+            <div class="question">
+                <div class="question-text">22. Constance Corp periodic inventory data: Beg 10,000@$6.00; Purch 12,000@$6.10; Purch 15,000@$6.25; Purch 3,000@$6.50; Purch 8,000@$6.60. Sales $540,000 @ $15/unit.</div>
+                <div class="input-group">
+                    <label for="q10a-input">Cost of Goods Available = $</label>
+                    <input type="number" id="q10a-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint10a')">Show Hint</button>
+                <div class="hint" id="hint10a">(10,000×$6) + (12,000×$6.10) + (15,000×$6.25) + (3,000×$6.50) + (8,000×$6.60)</div>
+                <div class="feedback" id="feedback10a"></div>
+            </div>
+
+            <!-- Q10b -->
+            <div class="question">
+                <div class="question-text">23. Using same Constance Corp data (COGA $303,450, units sold 36,000, units available 48,000, ending inventory 12,000 units). What is FIFO ending inventory value?</div>
+                <div class="input-group">
+                    <label for="q10b-input">FIFO Ending Inventory = $</label>
+                    <input type="number" id="q10b-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint10b')">Show Hint</button>
+                <div class="hint" id="hint10b">FIFO: 8,000@$6.60 + 3,000@$6.50 + 1,000@$6.25</div>
+                <div class="feedback" id="feedback10b"></div>
+            </div>
+
+            <!-- Q12g -->
+            <div class="question">
+                <div class="question-text">24. Kam Co: Inv Jan 1: 8,000@$11; Purch June 19: 13,000@$12; Purch Nov 8: 5,000@$13. If 9,000 units on hand Dec 31, what is FIFO ending inventory (periodic)?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12g" id="q12g-a" value="a">
+                        <label for="q12g-a">$117,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12g" id="q12g-b" value="b">
+                        <label for="q12g-b">$113,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12g" id="q12g-c" value="c">
+                        <label for="q12g-c">$108,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12g" id="q12g-d" value="d">
+                        <label for="q12g-d">$99,000</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint12g')">Show Hint</button>
+                <div class="hint" id="hint12g">FIFO: newest purchases. 5,000@$13 + 4,000@$12</div>
+                <div class="feedback" id="feedback12g"></div>
+            </div>
+
+            <!-- Q12h -->
+            <div class="question">
+                <div class="question-text">25. Same Kam Co data. What is LIFO ending inventory (periodic)?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12h" id="q12h-a" value="a">
+                        <label for="q12h-a">$100,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12h" id="q12h-b" value="b">
+                        <label for="q12h-b">$99,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12h" id="q12h-c" value="c">
+                        <label for="q12h-c">$113,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12h" id="q12h-d" value="d">
+                        <label for="q12h-d">$108,000</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint12h')">Show Hint</button>
+                <div class="hint" id="hint12h">LIFO: oldest purchases. 8,000@$11 + 1,000@$12</div>
+                <div class="feedback" id="feedback12h"></div>
+            </div>
+
+            <!-- Q12i -->
+            <div class="question">
+                <div class="question-text">26. In periods of rising prices, what will LIFO produce?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12i" id="q12i-a" value="a">
+                        <label for="q12i-a">Same net income as FIFO</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12i" id="q12i-b" value="b">
+                        <label for="q12i-b">Higher net income than FIFO</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12i" id="q12i-c" value="c">
+                        <label for="q12i-c">Higher net income than average costing</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12i" id="q12i-d" value="d">
+                        <label for="q12i-d">Lower net income than FIFO</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint12i')">Show Hint</button>
+                <div class="hint" id="hint12i">LIFO sells newest (expensive) inventory → higher COGS → ?</div>
+                <div class="feedback" id="feedback12i"></div>
+            </div>
+
+            <!-- Q12j -->
+            <div class="question">
+                <div class="question-text">27. Hagger Sounds LCM: iPods cost $24,000 market $20,400; Cell phones cost $18,000 market $19,000; DVDs cost $28,000 market $25,600. Ending inventory value (LCM by category)?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12j" id="q12j-a" value="a">
+                        <label for="q12j-a">$64,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12j" id="q12j-b" value="b">
+                        <label for="q12j-b">$65,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12j" id="q12j-c" value="c">
+                        <label for="q12j-c">$70,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12j" id="q12j-d" value="d">
+                        <label for="q12j-d">$71,000</label>
+                    </div>
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint12j')">Show Hint</button>
+                <div class="hint" id="hint12j">Take lower for each: iPods $20,400 + Phones $18,000 + DVDs $25,600</div>
+                <div class="feedback" id="feedback12j"></div>
+            </div>
+
+            <!-- Q11 -->
+            <div class="question">
+                <div class="question-text">28. Oheto Co LCM Dec 31:</div>
+                <table class="data-table" style="max-width: 550px;">
+                    <tr><th>Part</th><th>Qty</th><th>Cost/Unit</th><th>Market/Unit</th></tr>
+                    <tr><td>Wallet 110</td><td>600</td><td>$95</td><td>$100</td></tr>
+                    <tr><td>Wallet 111</td><td>1,000</td><td>$60</td><td>$52</td></tr>
+                    <tr><td>Bill clip 112</td><td>500</td><td>$80</td><td>$76</td></tr>
+                    <tr><td>Bill clip 113</td><td>200</td><td>$170</td><td>$180</td></tr>
+                    <tr><td>Coin purse 120</td><td>400</td><td>$205</td><td>$208</td></tr>
+                    <tr><td>Coin purse 122</td><td>300</td><td>$240</td><td>$235</td></tr>
+                </table>
+                <div class="input-group">
+                    <label for="q11-input">Inventory on Balance Sheet = $</label>
+                    <input type="number" id="q11-input" class="inline-input">
+                </div>
+                <button class="hint-btn" onclick="toggleHint('hint11')">Show Hint</button>
+                <div class="hint" id="hint11">110:$95×600 111:$52×1000 112:$76×500 113:$170×200 120:$205×400 122:$235×300</div>
+                <div class="feedback" id="feedback11"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const answers = {
+            q1a: '70560',
+            q1b: '1350',
+            q2a: 'a',
+            q2b: 'a',
+            q3: '7920',
+            q4a: '9916250',
+            q4b: '4715855',
+            q4c: '2540855',
+            q4d: '7375395',
+            q12a: 'b',
+            q12b: 'b',
+            q12c: 'a',
+            q5: '124700',
+            q12d: 'a',
+            q12e: 'a',
+            q12f: 'a',
+            q6: '18065',
+            q7: '19707',
+            q8: 'a',
+            q9a: 'a',
+            q9b: '465',
+            q10a: '303450',
+            q10b: '78550',
+            q12g: 'b',
+            q12h: 'a',
+            q12i: 'd',
+            q12j: 'a',
+            q11: '333500'
+        };
+
+        const checkedQuestions = new Set();
+
+        function toggleHint(hintId) {
+            const hint = document.getElementById(hintId);
+            hint.classList.toggle('show');
+        }
+
+        function checkQuestion(qNum) {
+            const feedbackId = 'feedback' + qNum.replace('q', '');
+            const feedback = document.getElementById(feedbackId);
+            const wasChecked = checkedQuestions.has(qNum);
+
+            const selected = document.querySelector(`input[name="${qNum}"]:checked`);
+            const numericInput = document.getElementById(`${qNum}-input`);
+
+            if (selected) {
+                if (selected.value === answers[qNum]) {
+                    feedback.className = 'feedback correct';
+                    feedback.innerHTML = '✓ Correct!';
+                } else {
+                    feedback.className = 'feedback incorrect';
+                    feedback.innerHTML = `✗ Incorrect. The correct answer was ${answers[qNum].toUpperCase()}.`;
+                }
+            } else if (numericInput) {
+                const userAnswer = numericInput.value.trim();
+                if (!userAnswer) {
+                    feedback.className = 'feedback incorrect';
+                    feedback.innerHTML = '✗ Please enter an answer first.';
+                    return;
+                }
+
+                if (userAnswer === answers[qNum]) {
+                    feedback.className = 'feedback correct';
+                    feedback.innerHTML = '✓ Correct!';
+                } else {
+                    feedback.className = 'feedback incorrect';
+                    feedback.innerHTML = `✗ Incorrect. The correct answer was $${answers[qNum]}.`;
+                }
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.innerHTML = '✗ Please select or enter an answer first.';
+                return;
+            }
+
+            if (!wasChecked) {
+                checkedQuestions.add(qNum);
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            const totalQuestions = 28;
+            const percentage = Math.round((checkedQuestions.size / totalQuestions) * 100);
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.textContent = `${checkedQuestions.size}/${totalQuestions} (${percentage}%)`;
+        }
+
+        function addCheckButtons() {
+            const questions = document.querySelectorAll('.question');
+
+            questions.forEach((question) => {
+                let qId = null;
+                const radioInput = question.querySelector('input[type="radio"]');
+                if (radioInput) qId = radioInput.name;
+
+                if (!qId) {
+                    const numInput = question.querySelector('input[type="number"]');
+                    if (numInput && numInput.id) {
+                        qId = numInput.id.replace('-input', '');
+                    }
+                }
+
+                if (!qId) return;
+
+                let buttonGroup = question.querySelector('.button-group');
+                if (!buttonGroup) {
+                    buttonGroup = document.createElement('div');
+                    buttonGroup.className = 'button-group';
+                    const feedback = question.querySelector('.feedback');
+                    if (feedback) {
+                        feedback.parentNode.insertBefore(buttonGroup, feedback);
+                    } else {
+                        question.appendChild(buttonGroup);
+                    }
+                }
+
+                const hintBtn = question.querySelector('.hint-btn');
+                if (hintBtn && !buttonGroup.contains(hintBtn)) {
+                    buttonGroup.appendChild(hintBtn);
+                }
+
+                if (!buttonGroup.querySelector('.check-btn')) {
+                    const checkBtn = document.createElement('button');
+                    checkBtn.className = 'check-btn';
+                    checkBtn.textContent = 'Check Answer';
+                    checkBtn.onclick = () => checkQuestion(qId);
+                    buttonGroup.appendChild(checkBtn);
+                }
+            });
+        }
+
+        window.addEventListener('load', function() {
+            addCheckButtons();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

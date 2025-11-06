@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACCT101 Exam 2 Study Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f5576c;
+            margin-bottom: 10px;
+            font-size: 2.8em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #f5576c;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #f5576c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-icon {
+            background: #f5576c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.3em;
+        }
+
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .file-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .file-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: #f5576c;
+            margin-bottom: 5px;
+        }
+
+        .file-desc {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .highlight h2 {
+            margin-bottom: 15px;
+        }
+
+        .highlight a {
+            display: inline-block;
+            background: white;
+            color: #f5576c;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+
+        .highlight a:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            color: #666;
+        }
+
+        .key-concepts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .concept-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f093fb;
+        }
+
+        .concept-title {
+            font-weight: 600;
+            color: #f093fb;
+            margin-bottom: 8px;
+        }
+
+        .coming-soon {
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .coming-soon::after {
+            content: "Coming Soon";
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            background: #fbbf24;
+            color: #78350f;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 ACCT101 Exam 2 Study Tools</h1>
+        <p class="subtitle">Units 06-08: Merchandising, Cash, & Inventory</p>
+
+        <div class="highlight">
+            <h2>🎯 Ready for Exam 2?</h2>
+            <p>Start here with our comprehensive all-in-one study tool!</p>
+            <a href="Final-Exam-Prep/final-exam-prep.html">Launch Exam 2 Prep →</a>
+        </div>
+
+        <!-- Section 1: Interactive Tools -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">🎮</span>
+                Interactive Learning Tools
+            </div>
+            <p style="margin-bottom: 15px; color: #666;">Hands-on practice for Units 06-08</p>
+            <div class="file-list">
+                <a href="Interactive-Tools/perpetual-vs-periodic.html" class="file-card">
+                    <div class="file-name">Perpetual vs Periodic Systems</div>
+                    <div class="file-desc">Compare inventory tracking methods with examples</div>
+                </a>
+                <a href="Interactive-Tools/fob-shipping.html" class="file-card">
+                    <div class="file-name">FOB Shipping Terms</div>
+                    <div class="file-desc">Master FOB Shipping Point vs FOB Destination</div>
+                </a>
+                <a href="Interactive-Tools/discount-calculator.html" class="file-card">
+                    <div class="file-name">Purchase/Sales Discounts</div>
+                    <div class="file-desc">Practice 2/10, n/30 and other discount terms</div>
+                </a>
+                <a href="Interactive-Tools/multi-step-income.html" class="file-card">
+                    <div class="file-name">Multi-Step Income Statement</div>
+                    <div class="file-desc">Build income statements for merchandising companies</div>
+                </a>
+                <a href="Interactive-Tools/bank-reconciliation.html" class="file-card">
+                    <div class="file-name">Bank Reconciliation</div>
+                    <div class="file-desc">Practice reconciling book and bank balances</div>
+                </a>
+                <a href="Interactive-Tools/inventory-costing.html" class="file-card">
+                    <div class="file-name">Inventory Costing Methods</div>
+                    <div class="file-desc">Compare FIFO, LIFO, and Weighted Average</div>
+                </a>
+                <a href="Interactive-Tools/lcm-calculator.html" class="file-card">
+                    <div class="file-name">Lower of Cost or Market</div>
+                    <div class="file-desc">Calculate LCM adjustments for inventory</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Section 2: Practice Quizzes -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">✍️</span>
+                Practice Quizzes
+            </div>
+            <p style="margin-bottom: 15px; color: #666;">Self-assessment tools for Units 06-08</p>
+            <div class="file-list">
+                <a href="Practice-Quizzes/merchandising-quiz.html" class="file-card coming-soon">
+                    <div class="file-name">Unit 06: Merchandising Operations</div>
+                    <div class="file-desc">Questions on perpetual/periodic, discounts, returns</div>
+                </a>
+                <a href="Practice-Quizzes/cash-quiz.html" class="file-card coming-soon">
+                    <div class="file-name">Unit 07: Cash & Cash Equivalents</div>
+                    <div class="file-desc">Bank reconciliation and internal controls</div>
+                </a>
+                <a href="Practice-Quizzes/inventory-quiz.html" class="file-card coming-soon">
+                    <div class="file-name">Unit 08: Merchandise Inventory</div>
+                    <div class="file-desc">FIFO, LIFO, Weighted Average, LCM</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Section 3: Official Quizzes -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">📝</span>
+                Official Quizzes
+            </div>
+            <p style="margin-bottom: 15px; color: #666;">Based on actual course quiz materials</p>
+            <div class="file-list">
+                <a href="Official-Quizzes/official-quiz.html" class="file-card">
+                    <div class="file-name">Official Quiz - Units 06-08</div>
+                    <div class="file-desc">Complete quiz from official exam materials (28 questions covering all units)</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Key Concepts -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-icon">🔑</span>
+                Key Concepts to Master
+            </div>
+            <div class="key-concepts">
+                <div class="concept-card">
+                    <div class="concept-title">Perpetual vs Periodic</div>
+                    <div><strong>Perpetual:</strong> Update inventory after each transaction</div>
+                    <div><strong>Periodic:</strong> Count inventory at period end</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-title">FOB Terms</div>
+                    <div><strong>FOB Shipping Point:</strong> Buyer pays freight, owns in transit</div>
+                    <div><strong>FOB Destination:</strong> Seller pays freight, owns in transit</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-title">Purchase Discounts</div>
+                    <div><strong>2/10, n/30:</strong> 2% discount if paid within 10 days</div>
+                    <div>Net amount due in 30 days</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-title">Multi-Step Income</div>
+                    <div>Sales - COGS = Gross Profit</div>
+                    <div>Gross Profit - Operating Exp = Operating Income</div>
+                    <div>± Other Rev/Exp = Net Income</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-title">Bank Reconciliation</div>
+                    <div>Book balance ± adjustments</div>
+                    <div>Bank balance ± outstanding items</div>
+                    <div>Should equal adjusted balance</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-title">Inventory Costing</div>
+                    <div><strong>FIFO:</strong> First In, First Out</div>
+                    <div><strong>LIFO:</strong> Last In, First Out</div>
+                    <div><strong>Weighted Avg:</strong> Cost per unit × units</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Official Quiz is ready!</strong> Practice quizzes coming soon! 🎓</p>
+            <p style="margin-top: 10px;">Good luck on exam 2! You got this! 💪</p>
+        </div>
+    </div>
+</body>
+</html>
