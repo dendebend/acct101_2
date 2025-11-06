@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Income Statement Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f5576c;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #f5576c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .input-section {
+            background: #f0fdf4;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #10b981;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #10b981;
+        }
+
+        button {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .statement-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .statement {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+
+        .statement-header {
+            text-align: center;
+            margin-bottom: 25px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .company-name {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .statement-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .statement-period {
+            color: #666;
+        }
+
+        .statement-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+        }
+
+        .statement-line.indent-1 {
+            padding-left: 30px;
+        }
+
+        .statement-line.indent-2 {
+            padding-left: 60px;
+        }
+
+        .statement-line.section-header {
+            font-weight: 600;
+            color: #f5576c;
+            margin-top: 15px;
+            font-size: 1.05em;
+        }
+
+        .statement-line.subtotal {
+            font-weight: 600;
+            border-top: 1px solid #333;
+            margin-top: 5px;
+            padding-top: 8px;
+        }
+
+        .statement-line.total {
+            font-weight: 700;
+            border-top: 3px double #333;
+            margin-top: 5px;
+            padding-top: 8px;
+            font-size: 1.1em;
+            color: #f5576c;
+        }
+
+        .statement-line.underline {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .explanation-box {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .explanation-title {
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+
+        .formula-box {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .format-guide {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .guide-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .guide-section {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .note {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Exam 2 Home</a>
+
+        <h1>Multi-Step Income Statement Builder</h1>
+        <p class="subtitle">For Merchandising Companies</p>
+
+        <div class="explanation-box">
+            <div class="explanation-title">Multi-Step vs Single-Step Income Statement</div>
+            <p><strong>Multi-Step:</strong> Separates operating activities from non-operating activities. Shows gross profit, operating income, and net income separately.</p>
+            <p style="margin-top:10px;"><strong>Single-Step:</strong> Simply lists all revenues and all expenses with one subtraction to get net income.</p>
+
+            <div class="formula-box" style="margin-top:15px;">
+Sales Revenue<br>
+- Cost of Goods Sold<br>
+= GROSS PROFIT<br>
+- Operating Expenses<br>
+= OPERATING INCOME<br>
+± Other Revenues and Expenses<br>
+= NET INCOME
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="input-section">
+                <div class="section-title">Enter Financial Data</div>
+
+                <div class="input-group">
+                    <label>Sales Revenue</label>
+                    <input type="number" id="salesRevenue" value="500000" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Sales Returns & Allowances</label>
+                    <input type="number" id="salesReturns" value="5000" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Sales Discounts</label>
+                    <input type="number" id="salesDiscounts" value="3000" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Cost of Goods Sold</label>
+                    <input type="number" id="cogs" value="300000" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Selling Expenses</label>
+                    <input type="number" id="sellingExpenses" value="50000" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Administrative Expenses</label>
+                    <input type="number" id="adminExpenses" value="40000" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Interest Revenue</label>
+                    <input type="number" id="interestRevenue" value="2000" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Interest Expense</label>
+                    <input type="number" id="interestExpense" value="5000" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label>Gain on Sale of Equipment</label>
+                    <input type="number" id="gainSale" value="3000" step="1">
+                </div>
+
+                <button onclick="generateStatement()">Generate Income Statement</button>
+
+                <button onclick="loadExample()" style="background:#3b82f6;margin-top:10px;">Load Example Data</button>
+            </div>
+
+            <div class="statement-section">
+                <div class="section-title">Multi-Step Income Statement</div>
+                <div id="statement" class="statement">
+                    <div style="text-align:center;color:#666;padding:40px 0;">
+                        Enter data and click "Generate Income Statement"
+                    </div>
+                </div>
+
+                <div class="format-guide">
+                    <div class="guide-title">Format Guide:</div>
+
+                    <div class="guide-section">
+                        <strong>1. Net Sales Section</strong><br>
+                        Sales Revenue - Sales Returns - Sales Discounts
+                    </div>
+
+                    <div class="guide-section">
+                        <strong>2. Gross Profit Section</strong><br>
+                        Net Sales - Cost of Goods Sold
+                    </div>
+
+                    <div class="guide-section">
+                        <strong>3. Operating Income Section</strong><br>
+                        Gross Profit - Operating Expenses (Selling + Admin)
+                    </div>
+
+                    <div class="guide-section">
+                        <strong>4. Net Income Section</strong><br>
+                        Operating Income ± Other Revenues/Expenses
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="note" style="margin-top:30px;">
+            <strong>Key Concepts:</strong><br>
+            • <strong>Gross Profit:</strong> What you make from selling merchandise before expenses<br>
+            • <strong>Operating Income:</strong> Profit from core business operations<br>
+            • <strong>Operating Expenses:</strong> Include selling expenses (sales salaries, advertising) and administrative expenses (office salaries, utilities)<br>
+            • <strong>Other Revenues/Expenses:</strong> Non-operating items like interest, gains/losses on asset sales
+        </div>
+    </div>
+
+    <script>
+        function generateStatement() {
+            const salesRevenue = parseFloat(document.getElementById('salesRevenue').value) || 0;
+            const salesReturns = parseFloat(document.getElementById('salesReturns').value) || 0;
+            const salesDiscounts = parseFloat(document.getElementById('salesDiscounts').value) || 0;
+            const cogs = parseFloat(document.getElementById('cogs').value) || 0;
+            const sellingExpenses = parseFloat(document.getElementById('sellingExpenses').value) || 0;
+            const adminExpenses = parseFloat(document.getElementById('adminExpenses').value) || 0;
+            const interestRevenue = parseFloat(document.getElementById('interestRevenue').value) || 0;
+            const interestExpense = parseFloat(document.getElementById('interestExpense').value) || 0;
+            const gainSale = parseFloat(document.getElementById('gainSale').value) || 0;
+
+            // Calculations
+            const netSales = salesRevenue - salesReturns - salesDiscounts;
+            const grossProfit = netSales - cogs;
+            const totalOperatingExpenses = sellingExpenses + adminExpenses;
+            const operatingIncome = grossProfit - totalOperatingExpenses;
+            const otherRevenuesExpenses = interestRevenue + gainSale - interestExpense;
+            const netIncome = operatingIncome + otherRevenuesExpenses;
+
+            const fmt = (num) => num.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+
+            const html = `
+                <div class="statement-header">
+                    <div class="company-name">ACME MERCHANDISING COMPANY</div>
+                    <div class="statement-title">Income Statement</div>
+                    <div class="statement-period">For the Year Ended December 31, 2024</div>
+                </div>
+
+                <div class="statement-line">
+                    <span>Sales Revenue</span>
+                    <span>$${fmt(salesRevenue)}</span>
+                </div>
+                ${salesReturns > 0 ? `<div class="statement-line indent-1">
+                    <span>Less: Sales Returns & Allowances</span>
+                    <span>$${fmt(salesReturns)}</span>
+                </div>` : ''}
+                ${salesDiscounts > 0 ? `<div class="statement-line indent-1">
+                    <span>Less: Sales Discounts</span>
+                    <span>$${fmt(salesDiscounts)}</span>
+                </div>` : ''}
+                <div class="statement-line subtotal">
+                    <span>Net Sales</span>
+                    <span>$${fmt(netSales)}</span>
+                </div>
+
+                <div class="statement-line indent-1" style="margin-top:15px;">
+                    <span>Cost of Goods Sold</span>
+                    <span>$${fmt(cogs)}</span>
+                </div>
+                <div class="statement-line subtotal">
+                    <span><strong>Gross Profit</strong></span>
+                    <span><strong>$${fmt(grossProfit)}</strong></span>
+                </div>
+
+                <div class="statement-line section-header">
+                    <span>Operating Expenses:</span>
+                    <span></span>
+                </div>
+                ${sellingExpenses > 0 ? `<div class="statement-line indent-1">
+                    <span>Selling Expenses</span>
+                    <span>$${fmt(sellingExpenses)}</span>
+                </div>` : ''}
+                ${adminExpenses > 0 ? `<div class="statement-line indent-1">
+                    <span>Administrative Expenses</span>
+                    <span>$${fmt(adminExpenses)}</span>
+                </div>` : ''}
+                <div class="statement-line indent-2 underline">
+                    <span>Total Operating Expenses</span>
+                    <span>$${fmt(totalOperatingExpenses)}</span>
+                </div>
+                <div class="statement-line subtotal">
+                    <span><strong>Operating Income</strong></span>
+                    <span><strong>$${fmt(operatingIncome)}</strong></span>
+                </div>
+
+                <div class="statement-line section-header">
+                    <span>Other Revenues and Expenses:</span>
+                    <span></span>
+                </div>
+                ${interestRevenue > 0 ? `<div class="statement-line indent-1">
+                    <span>Interest Revenue</span>
+                    <span>$${fmt(interestRevenue)}</span>
+                </div>` : ''}
+                ${gainSale > 0 ? `<div class="statement-line indent-1">
+                    <span>Gain on Sale of Equipment</span>
+                    <span>$${fmt(gainSale)}</span>
+                </div>` : ''}
+                ${interestExpense > 0 ? `<div class="statement-line indent-1">
+                    <span>Interest Expense</span>
+                    <span>($${fmt(interestExpense)})</span>
+                </div>` : ''}
+                <div class="statement-line indent-2 underline">
+                    <span>Total Other Revenues/Expenses</span>
+                    <span>${otherRevenuesExpenses >= 0 ? '$' : '($'}${fmt(Math.abs(otherRevenuesExpenses))}${otherRevenuesExpenses < 0 ? ')' : ''}</span>
+                </div>
+
+                <div class="statement-line total">
+                    <span><strong>NET INCOME</strong></span>
+                    <span><strong>$${fmt(netIncome)}</strong></span>
+                </div>
+            `;
+
+            document.getElementById('statement').innerHTML = html;
+        }
+
+        function loadExample() {
+            document.getElementById('salesRevenue').value = 850000;
+            document.getElementById('salesReturns').value = 12000;
+            document.getElementById('salesDiscounts').value = 8000;
+            document.getElementById('cogs').value = 520000;
+            document.getElementById('sellingExpenses').value = 85000;
+            document.getElementById('adminExpenses').value = 65000;
+            document.getElementById('interestRevenue').value = 3500;
+            document.getElementById('interestExpense').value = 7500;
+            document.getElementById('gainSale').value = 5000;
+
+            generateStatement();
+        }
+
+        // Auto-generate on page load with default values
+        generateStatement();
+    </script>
+</body>
+</html>

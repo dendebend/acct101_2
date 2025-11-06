@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOB Shipping Terms</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f5576c;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #f5576c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .fob-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 5px solid #f5576c;
+        }
+
+        .fob-card.destination {
+            border-top-color: #3b82f6;
+        }
+
+        .fob-title {
+            font-size: 1.6em;
+            color: #f5576c;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .fob-card.destination .fob-title {
+            color: #3b82f6;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #f5576c;
+            font-weight: bold;
+        }
+
+        .fob-card.destination .feature-list li::before {
+            color: #3b82f6;
+        }
+
+        .visual-demo {
+            background: #f0f9ff;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .demo-title {
+            font-size: 1.5em;
+            color: #3b82f6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .shipping-journey {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 30px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .location {
+            text-align: center;
+            flex: 0 0 150px;
+        }
+
+        .location-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .location-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .journey-line {
+            flex: 1;
+            height: 4px;
+            background: linear-gradient(to right, #f5576c, #3b82f6);
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .truck {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .ownership-indicator {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fbbf24;
+            color: #78350f;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .quiz-section {
+            background: #f0fdf4;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .quiz-title {
+            font-size: 1.5em;
+            color: #10b981;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .question-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            padding: 12px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: #e5e7eb;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
+
+        .option.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        button {
+            background: #f5576c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background: #e04560;
+            transform: translateY(-2px);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .note-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 5px;
+        }
+
+        .scenario-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .scenario-btn {
+            padding: 10px 20px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Exam 2 Home</a>
+
+        <h1>FOB Shipping Terms</h1>
+        <p class="subtitle">Free On Board: Who Pays Freight and Who Owns Goods in Transit?</p>
+
+        <div class="note">
+            <div class="note-title">What does FOB mean?</div>
+            <div><strong>FOB = Free On Board</strong> - Specifies the point at which ownership transfers from seller to buyer and who pays for freight costs.</div>
+        </div>
+
+        <div class="comparison-grid">
+            <div class="fob-card">
+                <div class="fob-title">FOB Shipping Point</div>
+                <p style="margin-bottom: 15px;"><strong>Ownership transfers at the seller's location (shipping point)</strong></p>
+
+                <ul class="feature-list">
+                    <li><strong>Buyer</strong> pays freight costs</li>
+                    <li><strong>Buyer</strong> owns goods during transit</li>
+                    <li>Risk transfers immediately when shipped</li>
+                    <li>Buyer records "Freight-In" (part of inventory cost)</li>
+                    <li>Goods in transit belong to buyer</li>
+                </ul>
+
+                <div class="note">
+                    <div class="note-title">Buyer's Entry (Perpetual):</div>
+                    <div>Dr. Inventory (cost + freight)</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;Cr. Cash/A/P</div>
+                </div>
+            </div>
+
+            <div class="fob-card destination">
+                <div class="fob-title">FOB Destination</div>
+                <p style="margin-bottom: 15px;"><strong>Ownership transfers at the buyer's location (destination)</strong></p>
+
+                <ul class="feature-list">
+                    <li><strong>Seller</strong> pays freight costs</li>
+                    <li><strong>Seller</strong> owns goods during transit</li>
+                    <li>Risk stays with seller until delivery</li>
+                    <li>Seller records "Freight-Out" (operating expense)</li>
+                    <li>Goods in transit belong to seller</li>
+                </ul>
+
+                <div class="note">
+                    <div class="note-title">Seller's Entry (Freight-Out):</div>
+                    <div>Dr. Freight-Out Expense</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;Cr. Cash</div>
+                </div>
+            </div>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>FOB Shipping Point</th>
+                    <th>FOB Destination</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Who pays freight?</strong></td>
+                    <td>Buyer</td>
+                    <td>Seller</td>
+                </tr>
+                <tr>
+                    <td><strong>When does ownership transfer?</strong></td>
+                    <td>At shipping point</td>
+                    <td>At destination</td>
+                </tr>
+                <tr>
+                    <td><strong>Who owns goods in transit?</strong></td>
+                    <td>Buyer</td>
+                    <td>Seller</td>
+                </tr>
+                <tr>
+                    <td><strong>Buyer's freight account</strong></td>
+                    <td>Freight-In (added to Inventory)</td>
+                    <td>None (seller pays)</td>
+                </tr>
+                <tr>
+                    <td><strong>Seller's freight account</strong></td>
+                    <td>None (buyer pays)</td>
+                    <td>Freight-Out (operating expense)</td>
+                </tr>
+                <tr>
+                    <td><strong>Inventory count includes in-transit?</strong></td>
+                    <td>Yes (buyer includes)</td>
+                    <td>Yes (seller includes)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="visual-demo">
+            <div class="demo-title">Visual Journey Simulator</div>
+            <p style="text-align: center; margin-bottom: 20px;">See who owns the goods at each stage of shipping</p>
+
+            <div class="scenario-controls">
+                <button class="scenario-btn" onclick="showScenario('shipping')">FOB Shipping Point</button>
+                <button class="scenario-btn" onclick="showScenario('destination')" style="background: #3b82f6;">FOB Destination</button>
+            </div>
+
+            <div id="journey-container">
+                <!-- Journey will be inserted here by JavaScript -->
+            </div>
+        </div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">Practice Questions</div>
+
+            <div class="question-card">
+                <div class="question-text">1. Goods are shipped FOB Shipping Point. Who pays the freight cost?</div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, false, 1)">A) Seller</div>
+                    <div class="option" onclick="checkAnswer(this, true, 1)">B) Buyer</div>
+                    <div class="option" onclick="checkAnswer(this, false, 1)">C) Shipping company</div>
+                    <div class="option" onclick="checkAnswer(this, false, 1)">D) Split 50/50</div>
+                </div>
+                <div id="feedback-1"></div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">2. A company's year-end inventory count is on Dec 31. Goods shipped FOB Destination on Dec 29 arrive Jan 2. Should these goods be included in the buyer's Dec 31 inventory?</div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, false, 2)">A) Yes, they were shipped before year-end</div>
+                    <div class="option" onclick="checkAnswer(this, true, 2)">B) No, ownership hasn't transferred yet</div>
+                    <div class="option" onclick="checkAnswer(this, false, 2)">C) Yes, if payment was made</div>
+                    <div class="option" onclick="checkAnswer(this, false, 2)">D) Only if the buyer paid freight</div>
+                </div>
+                <div id="feedback-2"></div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">3. Seller ships goods FOB Shipping Point and pays $500 freight as a courtesy. How does the seller record this?</div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, false, 3)">A) Dr. Freight-Out / Cr. Cash</div>
+                    <div class="option" onclick="checkAnswer(this, true, 3)">B) Dr. Accounts Receivable / Cr. Cash</div>
+                    <div class="option" onclick="checkAnswer(this, false, 3)">C) Dr. Inventory / Cr. Cash</div>
+                    <div class="option" onclick="checkAnswer(this, false, 3)">D) No entry needed</div>
+                </div>
+                <div id="feedback-3"></div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text">4. Under which FOB term does the buyer record freight costs as part of inventory cost?</div>
+                <div class="options">
+                    <div class="option" onclick="checkAnswer(this, true, 4)">A) FOB Shipping Point</div>
+                    <div class="option" onclick="checkAnswer(this, false, 4)">B) FOB Destination</div>
+                    <div class="option" onclick="checkAnswer(this, false, 4)">C) Both</div>
+                    <div class="option" onclick="checkAnswer(this, false, 4)">D) Neither</div>
+                </div>
+                <div id="feedback-4"></div>
+            </div>
+
+            <button onclick="resetQuiz()">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        function showScenario(type) {
+            const container = document.getElementById('journey-container');
+
+            if (type === 'shipping') {
+                container.innerHTML = `
+                    <div class="shipping-journey">
+                        <div class="location">
+                            <div class="location-icon">🏭</div>
+                            <div class="location-label">Seller's Warehouse</div>
+                            <div style="margin-top:10px;color:#f5576c;font-weight:600;">Ownership transfers HERE</div>
+                        </div>
+                        <div class="journey-line">
+                            <div class="truck">🚚</div>
+                            <div class="ownership-indicator">Buyer owns (in transit)</div>
+                        </div>
+                        <div class="location">
+                            <div class="location-icon">🏢</div>
+                            <div class="location-label">Buyer's Location</div>
+                        </div>
+                    </div>
+                    <div style="text-align:center;margin-top:20px;">
+                        <div style="font-size:1.2em;font-weight:600;color:#f5576c;margin-bottom:10px;">FOB Shipping Point</div>
+                        <div>✓ Buyer pays $500 freight → Dr. Inventory 500 / Cr. Cash 500</div>
+                        <div>✓ Buyer owns goods during transit</div>
+                        <div>✓ If goods damaged in transit, buyer's loss</div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="shipping-journey">
+                        <div class="location">
+                            <div class="location-icon">🏭</div>
+                            <div class="location-label">Seller's Warehouse</div>
+                        </div>
+                        <div class="journey-line">
+                            <div class="truck">🚚</div>
+                            <div class="ownership-indicator">Seller owns (in transit)</div>
+                        </div>
+                        <div class="location">
+                            <div class="location-icon">🏢</div>
+                            <div class="location-label">Buyer's Location</div>
+                            <div style="margin-top:10px;color:#3b82f6;font-weight:600;">Ownership transfers HERE</div>
+                        </div>
+                    </div>
+                    <div style="text-align:center;margin-top:20px;">
+                        <div style="font-size:1.2em;font-weight:600;color:#3b82f6;margin-bottom:10px;">FOB Destination</div>
+                        <div>✓ Seller pays $500 freight → Dr. Freight-Out Expense 500 / Cr. Cash 500</div>
+                        <div>✓ Seller owns goods during transit</div>
+                        <div>✓ If goods damaged in transit, seller's loss</div>
+                    </div>
+                `;
+            }
+        }
+
+        function checkAnswer(element, isCorrect, questionNum) {
+            const options = element.parentElement.children;
+            const feedbackDiv = document.getElementById(`feedback-${questionNum}`);
+
+            // Remove previous selections
+            for (let opt of options) {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            }
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                feedbackDiv.className = 'feedback correct';
+
+                const explanations = {
+                    1: 'Correct! Under FOB Shipping Point, the buyer pays freight and records it as Freight-In (added to inventory cost).',
+                    2: 'Correct! Under FOB Destination, ownership transfers when goods arrive. Since they arrive Jan 2, the seller still owns them on Dec 31.',
+                    3: 'Correct! The seller paid on behalf of the buyer, so they debit A/R (buyer owes them) and credit Cash. This is different from Freight-Out.',
+                    4: 'Correct! Under FOB Shipping Point, the buyer pays freight and adds it to inventory cost (Dr. Inventory / Cr. Cash).'
+                };
+                feedbackDiv.textContent = '✓ ' + explanations[questionNum];
+            } else {
+                element.classList.add('incorrect');
+                feedbackDiv.className = 'feedback incorrect';
+                feedbackDiv.textContent = '✗ Incorrect. Try again!';
+            }
+        }
+
+        function resetQuiz() {
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`feedback-${i}`).textContent = '';
+                document.getElementById(`feedback-${i}`).className = '';
+            }
+        }
+
+        // Initialize with FOB Shipping Point scenario
+        showScenario('shipping');
+    </script>
+</body>
+</html>
