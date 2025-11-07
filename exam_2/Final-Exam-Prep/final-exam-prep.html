@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACCT101 Exam 2 - Final Exam Prep</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #f5576c;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background: #f5576c;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .options {
+            margin-left: 10px;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #f8f9fa;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .option label {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .check-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .check-btn:hover {
+            background: #218838;
+        }
+
+        .feedback {
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+            display: block;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #6c757d;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #5a6268;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .score-display {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .score-display h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .score-display .score {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .data-table th {
+            background: #f093fb;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-btn">← Back to Home</a>
+
+        <h1>Final Exam Prep</h1>
+        <p class="subtitle">Comprehensive Practice - All Units 06-08 | 54 Questions</p>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar">0/54 (0%)</div>
+        </div>
+
+        <!-- UNIT 06: MERCHANDISING OPERATIONS -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">1</span>
+                Unit 06: Merchandising Operations (15 Questions)
+            </div>
+
+            <!-- Q1 -->
+            <div class="question">
+                <div class="question-text">1. Which statement below is true concerning a perpetual inventory system?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q1" id="q1-a" value="a">
+                        <label for="q1-a">a. It allows for the determination of cost of goods sold after each sale.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" id="q1-b" value="b">
+                        <label for="q1-b">b. It requires a physical inventory count to determine the cost of goods on hand.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" id="q1-c" value="c">
+                        <label for="q1-c">c. Cost of goods sold is determined based on a physical count at the end of the period.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q1" id="q1-d" value="d">
+                        <label for="q1-d">d. It is used infrequently due to the high cost of determining the cost of goods acquired.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q1', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q1"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question">
+                <div class="question-text">2. Credit terms of 3/10, n/30 mean that a(n)</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q2" id="q2-a" value="a">
+                        <label for="q2-a">a. 10% cash discount may be taken if payment is made immediately; a 3% discount if paid within 30 days.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" id="q2-b" value="b">
+                        <label for="q2-b">b. 3% cash discount may be taken if payment is made within 10 days of the invoice date; otherwise the full amount is due within 30 days.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" id="q2-c" value="c">
+                        <label for="q2-c">c. 3% cash discount may be taken if payment is made within 10 days of the invoice date; otherwise the full amount is due at the end of the month.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q2" id="q2-d" value="d">
+                        <label for="q2-d">d. additional amount equal to 3% of the invoice price must be paid if payment is not received within 10 days; the account is overdue after 30 days.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q2', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q2"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question">
+                <div class="question-text">3. The Sales Returns and Allowances account</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q3" id="q3-a" value="a">
+                        <label for="q3-a">a. normally has a credit balance.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" id="q3-b" value="b">
+                        <label for="q3-b">b. should not be closed at the end of the period.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" id="q3-c" value="c">
+                        <label for="q3-c">c. is a contra account to Accounts Receivable.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q3" id="q3-d" value="d">
+                        <label for="q3-d">d. is a contra Sales account.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q3', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q3"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question">
+                <div class="question-text">4. A sales discount is based on:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q4" id="q4-a" value="a">
+                        <label for="q4-a">a. invoice price less returns and allowances.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" id="q4-b" value="b">
+                        <label for="q4-b">b. invoice price plus returns and allowances.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" id="q4-c" value="c">
+                        <label for="q4-c">c. invoice price plus freight-out.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q4" id="q4-d" value="d">
+                        <label for="q4-d">d. invoice less discount.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q4', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q4"></div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question">
+                <div class="question-text">5. What do freight terms of FOB shipping point indicate?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q5" id="q5-a" value="a">
+                        <label for="q5-a">a. The seller places the goods free on board the carrier, and the seller pays for the goods.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" id="q5-b" value="b">
+                        <label for="q5-b">b. Goods are placed free on board to the buyer's place of business and the buyer deducts the freight costs from the purchase price of the goods.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" id="q5-c" value="c">
+                        <label for="q5-c">c. Goods are placed free on board to the buyer's place of business and the seller pays the freight costs.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q5" id="q5-d" value="d">
+                        <label for="q5-d">d. The seller places the goods free on board the carrier, and the buyer pays for the freight costs.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q5', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q5"></div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question">
+                <div class="question-text">6. Freight terms of FOB destination point mean that the</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q6" id="q6-a" value="a">
+                        <label for="q6-a">a. buyer must bear the freight costs.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q6" id="q6-b" value="b">
+                        <label for="q6-b">b. seller must debit freight out.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q6" id="q6-c" value="c">
+                        <label for="q6-c">c. goods are placed free on board at the buyer's place of business.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q6" id="q6-d" value="d">
+                        <label for="q6-d">d. it is not decided who will pay the freight costs.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q6', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q6"></div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question">
+                <div class="question-text">7. Given the following information, compute the amount of cash finally remitted by the customer.<br>
+                Feb. 22—Sale on credit, terms of 2/10, n/30—$3,000<br>
+                Feb. 27—Allowance granted due to some items being damaged—$400<br>
+                Feb. 28—Payment in full received from customer—$?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q7" id="q7-a" value="a">
+                        <label for="q7-a">a. $2,600</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q7" id="q7-b" value="b">
+                        <label for="q7-b">b. $2,940</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q7" id="q7-c" value="c">
+                        <label for="q7-c">c. $2,548</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q7" id="q7-d" value="d">
+                        <label for="q7-d">d. $2,522</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q7', 'c')">Check Answer</button>
+                <div class="feedback" id="feedback-q7"></div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question">
+                <div class="question-text">8. Martin Company purchases $4,200 of merchandise on March 1, with credit terms of 3/10, n/30. If Martin pays on March 11, what is the cost of this purchase?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q8" id="q8-a" value="a">
+                        <label for="q8-a">a. $4,200</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" id="q8-b" value="b">
+                        <label for="q8-b">b. $3,780</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" id="q8-c" value="c">
+                        <label for="q8-c">c. $4,074</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q8" id="q8-d" value="d">
+                        <label for="q8-d">d. $3,864</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q8', 'c')">Check Answer</button>
+                <div class="feedback" id="feedback-q8"></div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question">
+                <div class="question-text">9. When a customer returns goods for credit, the seller should</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q9" id="q9-a" value="a">
+                        <label for="q9-a">a. credit Accounts Payable.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9" id="q9-b" value="b">
+                        <label for="q9-b">b. credit Accounts Receivable.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9" id="q9-c" value="c">
+                        <label for="q9-c">c. debit Accounts Receivable.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q9" id="q9-d" value="d">
+                        <label for="q9-d">d. credit Merchandise Inventory</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q9', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q9"></div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question">
+                <div class="question-text">10. A company returned goods for credit to the supplier. Which one of the following is a portion of the journal entry required if a perpetual inventory system is used?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q10" id="q10-a" value="a">
+                        <label for="q10-a">a. Credit Accounts Payable</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q10" id="q10-b" value="b">
+                        <label for="q10-b">b. Credit Purchase Returns and Allowances</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q10" id="q10-c" value="c">
+                        <label for="q10-c">c. Debit Accounts Receivable</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q10" id="q10-d" value="d">
+                        <label for="q10-d">d. Credit Merchandise Inventory</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q10', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q10"></div>
+            </div>
+
+            <!-- Q11 -->
+            <div class="question">
+                <div class="question-text">11. An entry debiting Accounts Payable and crediting Inventory indicates a</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q11" id="q11-a" value="a">
+                        <label for="q11-a">a. sale on account to a customer.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q11" id="q11-b" value="b">
+                        <label for="q11-b">b. LCM is an example of the revenue recognition principle.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q11" id="q11-c" value="c">
+                        <label for="q11-c">c. return of goods originally sold on account to a customer.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q11" id="q11-d" value="d">
+                        <label for="q11-d">d. return of goods originally purchased on account to the supplier.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q11', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q11"></div>
+            </div>
+
+            <!-- Q12 -->
+            <div class="question">
+                <div class="question-text">12. If merchandise is sold for $2,000 subject to credit terms of 2/10, n/30, the entry to record collection in full within the discount period would include a</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q12" id="q12-a" value="a">
+                        <label for="q12-a">a. debit to Sales Discounts for $40.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12" id="q12-b" value="b">
+                        <label for="q12-b">b. credit to Cash for $1,960.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12" id="q12-c" value="c">
+                        <label for="q12-c">c. credit to Accounts Receivable for $40.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q12" id="q12-d" value="d">
+                        <label for="q12-d">d. none of the above.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q12', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q12"></div>
+            </div>
+
+            <!-- Q13 -->
+            <div class="question">
+                <div class="question-text">13. Myers and Company sold $1,800 of merchandise on account to Oscar, Inc. on March 1 with credit terms of 2/10, n/30. Oscar returned $500 of the merchandise due to poor quality on March 3. If Oscar pays for the purchase on March 11, what entry does Myers make to record receipt of payment?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q13" id="q13-a" value="a">
+                        <label for="q13-a">a. Cash 1,800 / Sales Discounts 36 / Accounts Receivable 1,764</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q13" id="q13-b" value="b">
+                        <label for="q13-b">b. Cash 1,764 / Accounts Receivable 1,764</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q13" id="q13-c" value="c">
+                        <label for="q13-c">c. Cash 1,800 / Sales Returns and Allowances 500 / Accounts Receivable 1,300</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q13" id="q13-d" value="d">
+                        <label for="q13-d">d. Cash 1,274 / Sales Discounts 26 / Accounts Receivable 1,300</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q13', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q13"></div>
+            </div>
+
+            <!-- Q14 -->
+            <div class="question">
+                <div class="question-text">14. In a perpetual inventory system what accounts are credited when merchandise is returned by a customer to the seller?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q14" id="q14-a" value="a">
+                        <label for="q14-a">a. Accounts Receivable and Cost of Goods Sold</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q14" id="q14-b" value="b">
+                        <label for="q14-b">b. Merchandise Inventory and Cost of Goods Sold</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q14" id="q14-c" value="c">
+                        <label for="q14-c">c. Sales Returns and Allowances and Merchandise Inventory</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q14" id="q14-d" value="d">
+                        <label for="q14-d">d. Sales Returns and Allowances and Accounts Receivable</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q14', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q14"></div>
+            </div>
+
+            <!-- Q15 -->
+            <div class="question">
+                <div class="question-text">15. Gross profit is calculated by</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q15" id="q15-a" value="a">
+                        <label for="q15-a">a. subtracting total expenses from total revenues.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q15" id="q15-b" value="b">
+                        <label for="q15-b">b. subtracting cost of goods sold from net sales.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q15" id="q15-c" value="c">
+                        <label for="q15-c">c. subtracting the ending inventory from cost of goods sold.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q15" id="q15-d" value="d">
+                        <label for="q15-d">d. adding cost of goods sold to net sales.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q15', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q15"></div>
+            </div>
+        </div>
+
+        <!-- UNIT 07: CASH AND CASH EQUIVALENTS -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">2</span>
+                Unit 07: Cash and Cash Equivalents (22 Questions)
+            </div>
+
+            <!-- Q16 -->
+            <div class="question">
+                <div class="question-text">16. Cash is reported on all of the following statements except:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q16" id="q16-a" value="a">
+                        <label for="q16-a">a. Income Statement.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q16" id="q16-b" value="b">
+                        <label for="q16-b">b. Statement of Cash Flows.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q16" id="q16-c" value="c">
+                        <label for="q16-c">c. Balance Sheet.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q16" id="q16-d" value="d">
+                        <label for="q16-d">d. All of the above.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q16', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q16"></div>
+            </div>
+
+            <!-- Q17 -->
+            <div class="question">
+                <div class="question-text">17. Which of the following items is not considered to be a cash and cash equivalent?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q17" id="q17-a" value="a">
+                        <label for="q17-a">a. Short-term highly liquid investments maturing in 30 days</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q17" id="q17-b" value="b">
+                        <label for="q17-b">b. Commercial paper maturing in 75 days</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q17" id="q17-c" value="c">
+                        <label for="q17-c">c. Restricted cash funds for the expansion of a building to be constructed next year</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q17" id="q17-d" value="d">
+                        <label for="q17-d">d. Deposits in transit</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q17', 'c')">Check Answer</button>
+                <div class="feedback" id="feedback-q17"></div>
+            </div>
+
+            <!-- Q18 -->
+            <div class="question">
+                <div class="question-text">18. A company has the following items at year-end: cash on hand, $1,000; cash in a checking account, $3,000; cash in a savings account, $5,000; postage stamps, $50; Treasury bills, $10,000 that mature in less than 90 days. How much should the company report as cash and cash equivalents on its balance sheet?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q18" id="q18-a" value="a">
+                        <label for="q18-a">a. $9,050</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q18" id="q18-b" value="b">
+                        <label for="q18-b">b. $9,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q18" id="q18-c" value="c">
+                        <label for="q18-c">c. $19,050</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q18" id="q18-d" value="d">
+                        <label for="q18-d">d. $19,000</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q18', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q18"></div>
+            </div>
+
+            <!-- Q19 -->
+            <div class="question">
+                <div class="question-text">19. A bank statement shows</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q19" id="q19-a" value="a">
+                        <label for="q19-a">a. notification of amounts deducted by the bank to cover such things as the cost of a supply of new checks ordered by the depositor.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q19" id="q19-b" value="b">
+                        <label for="q19-b">b. a designation of which checks are still outstanding at the end of the month.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q19" id="q19-c" value="c">
+                        <label for="q19-c">c. a designation of which deposits are in transit at the end of the month.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q19" id="q19-d" value="d">
+                        <label for="q19-d">d. notification of errors made by the account holder in recording checks written during the month.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q19', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q19"></div>
+            </div>
+
+            <!-- Q20 -->
+            <div class="question">
+                <div class="question-text">20. From the four choices below, select the one correct statement.</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q20" id="q20-a" value="a">
+                        <label for="q20-a">a. Both deposits in transit and outstanding checks are added to the balance per the bank statement during the bank reconciliation.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q20" id="q20-b" value="b">
+                        <label for="q20-b">b. Both deposits in transit and outstanding checks are deducted from the balance per the bank statement during the bank reconciliation.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q20" id="q20-c" value="c">
+                        <label for="q20-c">c. The deposits in transit are deducted from the balance per the bank statement and outstanding checks are added to the balance per the bank statement during the bank reconciliation.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q20" id="q20-d" value="d">
+                        <label for="q20-d">d. The deposits in transit are added to the balance per the bank statement and outstanding checks are deducted from the balance per the bank statement during the bank reconciliation.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q20', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q20"></div>
+            </div>
+
+            <!-- Q21 -->
+            <div class="question">
+                <div class="question-text">21. Jones Company collected the following information to prepare its May bank reconciliation:<br>
+                Cash balance per books, May 31: $5,300<br>
+                Deposits in transit: 510<br>
+                Notes receivable with interest collected by bank: 580<br>
+                Bank Service Charges: 30<br>
+                Outstanding checks: 180<br>
+                NSF check: 150<br><br>
+                The adjusted cash balance per books on May 31 is:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q21" id="q21-a" value="a">
+                        <label for="q21-a">a. $5,660.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q21" id="q21-b" value="b">
+                        <label for="q21-b">b. $5,700.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q21" id="q21-c" value="c">
+                        <label for="q21-c">c. $5,810.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q21" id="q21-d" value="d">
+                        <label for="q21-d">d. $6,210.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q21', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q21"></div>
+            </div>
+
+            <!-- Q22 -->
+            <div class="question">
+                <div class="question-text">22. Nilson Company gathered the following reconciling information in preparing its August bank reconciliation:<br>
+                Cash balance per books, 8/31: $7,000<br>
+                Deposits in transit: 300<br>
+                Notes receivable and interest collected by bank: 1,700<br>
+                Bank charge for check printing: 40<br>
+                Outstanding checks: 4,000<br>
+                NSF check: 340<br><br>
+                The adjusted cash balance per books on August 31 is</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q22" id="q22-a" value="a">
+                        <label for="q22-a">a. $8,320.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q22" id="q22-b" value="b">
+                        <label for="q22-b">b. $8,020.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q22" id="q22-c" value="c">
+                        <label for="q22-c">c. $4,620.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q22" id="q22-d" value="d">
+                        <label for="q22-d">d. $4,920.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q22', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q22"></div>
+            </div>
+
+            <!-- Q23 -->
+            <div class="question">
+                <div class="question-text">23. Schwinn Company assembled the following information in completing its March bank reconciliation:<br>
+                Balance per bank: $11,460<br>
+                Outstanding checks: $2,325<br>
+                Deposits in transit: $3,750<br>
+                NSF check: $240<br>
+                Bank service charge: $75<br>
+                Cash balance per books: $13,200<br><br>
+                As a result of this reconciliation, Schwinn will</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q23" id="q23-a" value="a">
+                        <label for="q23-a">a. reduce its cash account by $1,425.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q23" id="q23-b" value="b">
+                        <label for="q23-b">b. reduce its cash account by $75.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q23" id="q23-c" value="c">
+                        <label for="q23-c">c. increase its cash account by $165.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q23" id="q23-d" value="d">
+                        <label for="q23-d">d. reduce its cash account by $315.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q23', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q23"></div>
+            </div>
+
+            <!-- Q24 -->
+            <div class="question">
+                <div class="question-text">24. Barker Company collected the following information to prepare its November bank reconciliation:<br>
+                Cash balance per bank, November 30: $21,000<br>
+                Note receivable plus interest collected: 9,000<br>
+                Outstanding checks: 6,000<br>
+                Deposits in transit: 5,400<br>
+                Bank service charges: 85<br>
+                NSF check: 2,100<br><br>
+                The cash balance per books, before adjustments to the book balance, is:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q24" id="q24-a" value="a">
+                        <label for="q24-a">a. $13,585.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q24" id="q24-b" value="b">
+                        <label for="q24-b">b. $6,815.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q24" id="q24-c" value="c">
+                        <label for="q24-c">c. $27,815.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q24" id="q24-d" value="d">
+                        <label for="q24-d">d. $20,400.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q24', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q24"></div>
+            </div>
+
+            <!-- Q25 -->
+            <div class="question">
+                <div class="question-text">25. For which of the following would an adjusting entry NOT be required?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q25" id="q25-a" value="a">
+                        <label for="q25-a">a. book errors.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q25" id="q25-b" value="b">
+                        <label for="q25-b">b. bank service charges</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q25" id="q25-c" value="c">
+                        <label for="q25-c">c. deposits in transit</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q25" id="q25-d" value="d">
+                        <label for="q25-d">d. NSF checks.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q25', 'c')">Check Answer</button>
+                <div class="feedback" id="feedback-q25"></div>
+            </div>
+
+            <!-- Q26 -->
+            <div class="question">
+                <div class="question-text">26. An adjusting entry is required for:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q26" id="q26-a" value="a">
+                        <label for="q26-a">a. deposits in transit.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q26" id="q26-b" value="b">
+                        <label for="q26-b">b. outstanding checks.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q26" id="q26-c" value="c">
+                        <label for="q26-c">c. bank errors.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q26" id="q26-d" value="d">
+                        <label for="q26-d">d. NSF checks.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q26', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q26"></div>
+            </div>
+
+            <!-- Q27 -->
+            <div class="question">
+                <div class="question-text">27. Which of the following journal entries is the adjusting journal entry for the account holder to record a monthly service charge of $10?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q27" id="q27-a" value="a">
+                        <label for="q27-a">a. Cash 10 / Account Receivable 10</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q27" id="q27-b" value="b">
+                        <label for="q27-b">b. Bank Charge Expense 10 / Cash 10</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q27" id="q27-c" value="c">
+                        <label for="q27-c">c. Loss on Bank Transactions 10 / Cash 10</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q27" id="q27-d" value="d">
+                        <label for="q27-d">d. Cash 10 / Bank Service Fee 10</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q27', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q27"></div>
+            </div>
+
+            <!-- Q28 -->
+            <div class="question">
+                <div class="question-text">28. A check correctly written and paid by the bank for $395 is incorrectly recorded on the company's books for $359. The appropriate adjustment on a bank reconciliation would be to:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q28" id="q28-a" value="a">
+                        <label for="q28-a">a. deduct $359 from the book's balance.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q28" id="q28-b" value="b">
+                        <label for="q28-b">b. deduct $36 from the book's balance.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q28" id="q28-c" value="c">
+                        <label for="q28-c">c. deduct $36 from the bank's balance.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q28" id="q28-d" value="d">
+                        <label for="q28-d">d. add $36 to the bank's balance.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q28', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q28"></div>
+            </div>
+
+            <!-- Q29 -->
+            <div class="question">
+                <div class="question-text">29. Springer Company had outstanding checks totaling $4,500 on its September bank reconciliation. In October, the company issued checks totaling $45,700. The October bank statement shows that checks totaling $39,800 cleared the bank. The outstanding checks on the October bank reconciliation should total</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q29" id="q29-a" value="a">
+                        <label for="q29-a">a. $10,400.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q29" id="q29-b" value="b">
+                        <label for="q29-b">b. $1,400.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q29" id="q29-c" value="c">
+                        <label for="q29-c">c. $5,900.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q29" id="q29-d" value="d">
+                        <label for="q29-d">d. $9,400.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q29', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q29"></div>
+            </div>
+
+            <!-- Q30 -->
+            <div class="question">
+                <div class="question-text">30. A bank reconciling item would be</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q30" id="q30-a" value="a">
+                        <label for="q30-a">a. an NSF check.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q30" id="q30-b" value="b">
+                        <label for="q30-b">b. monthly service charges.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q30" id="q30-c" value="c">
+                        <label for="q30-c">c. outstanding checks.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q30" id="q30-d" value="d">
+                        <label for="q30-d">d. interest earned.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q30', 'c')">Check Answer</button>
+                <div class="feedback" id="feedback-q30"></div>
+            </div>
+
+            <!-- Q31 -->
+            <div class="question">
+                <div class="question-text">31. A reconciling item that deducts from the books side would be</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q31" id="q31-a" value="a">
+                        <label for="q31-a">a. deposits in transit.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q31" id="q31-b" value="b">
+                        <label for="q31-b">b. monthly service charges.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q31" id="q31-c" value="c">
+                        <label for="q31-c">c. collection of a note receivable.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q31" id="q31-d" value="d">
+                        <label for="q31-d">d. interest earned.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q31', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q31"></div>
+            </div>
+
+            <!-- Q32 -->
+            <div class="question">
+                <div class="question-text">32. A company's bank statement shows a collection of a notes receivable for $500. The adjusting journal entry to record this transaction would include</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q32" id="q32-a" value="a">
+                        <label for="q32-a">a. a debit to notes receivable for $500.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q32" id="q32-b" value="b">
+                        <label for="q32-b">b. a credit to notes receivable for $500.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q32" id="q32-c" value="c">
+                        <label for="q32-c">c. a credit to cash for $500.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q32" id="q32-d" value="d">
+                        <label for="q32-d">d. A credit to note expense for $500.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q32', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q32"></div>
+            </div>
+
+            <!-- Q33 -->
+            <div class="question">
+                <div class="question-text">33. Which of the following items on a bank reconciliation would require an adjusting journal entry?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q33" id="q33-a" value="a">
+                        <label for="q33-a">a. Outstanding checks</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q33" id="q33-b" value="b">
+                        <label for="q33-b">b. Deposits in transit</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q33" id="q33-c" value="c">
+                        <label for="q33-c">c. Bank errors</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q33" id="q33-d" value="d">
+                        <label for="q33-d">d. NSF checks</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q33', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q33"></div>
+            </div>
+
+            <!-- Q34 -->
+            <div class="question">
+                <div class="question-text">34. When is the petty cash fund replenished?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q34" id="q34-a" value="a">
+                        <label for="q34-a">a. Each time that funds are disbursed.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q34" id="q34-b" value="b">
+                        <label for="q34-b">b. When there's not enough cash to cover future withdrawals.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q34" id="q34-c" value="c">
+                        <label for="q34-c">c. When the internal auditor is coming to check the fund's management.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q34" id="q34-d" value="d">
+                        <label for="q34-d">d. At the end of an accounting period.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q34', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q34"></div>
+            </div>
+
+            <!-- Q35 -->
+            <div class="question">
+                <div class="question-text">35. When replenishing the petty cash fund, which of these accounts will not be used in the journal entry?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q35" id="q35-a" value="a">
+                        <label for="q35-a">a. Petty Cash</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q35" id="q35-b" value="b">
+                        <label for="q35-b">b. Cash</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q35" id="q35-c" value="c">
+                        <label for="q35-c">c. Various expense accounts</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q35" id="q35-d" value="d">
+                        <label for="q35-d">d. Various asset accounts.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q35', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q35"></div>
+            </div>
+
+            <!-- Q36 -->
+            <div class="question">
+                <div class="question-text">36. A $100 petty cash fund has cash of $16 and receipts of $86. The journal entry to replenish the account would include</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q36" id="q36-a" value="a">
+                        <label for="q36-a">a. debit to Cash for $86.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q36" id="q36-b" value="b">
+                        <label for="q36-b">b. credit to Petty Cash for $86.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q36" id="q36-c" value="c">
+                        <label for="q36-c">c. credit to Cash Short and Over for $2.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q36" id="q36-d" value="d">
+                        <label for="q36-d">d. credit to Cash for $86.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q36', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q36"></div>
+            </div>
+
+            <!-- Q37 -->
+            <div class="question">
+                <div class="question-text">37. A check is written to replenish a $100 petty cash fund when the fund contains $3 of cash and $94 of receipts. Which of the following is part of the journal entry to record the replenishment?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q37" id="q37-a" value="a">
+                        <label for="q37-a">a. Cash Short and Over is debited for $3.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q37" id="q37-b" value="b">
+                        <label for="q37-b">b. Petty Cash is debited for $94.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q37" id="q37-c" value="c">
+                        <label for="q37-c">c. Cash is credited for $94.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q37" id="q37-d" value="d">
+                        <label for="q37-d">d. Petty Cash is credited for $3.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q37', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q37"></div>
+            </div>
+        </div>
+
+        <!-- UNIT 08: MERCHANDISE INVENTORY -->
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">3</span>
+                Unit 08: Merchandise Inventory (17 Questions)
+            </div>
+
+            <!-- Q38 -->
+            <div class="question">
+                <div class="question-text">38. Ownership passes to the buyer when the public carrier accepts the goods if the goods are shipped:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q38" id="q38-a" value="a">
+                        <label for="q38-a">a. FOB destination.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q38" id="q38-b" value="b">
+                        <label for="q38-b">b. FOB shipping point.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q38" id="q38-c" value="c">
+                        <label for="q38-c">c. FOB buyer.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q38" id="q38-d" value="d">
+                        <label for="q38-d">d. FOB shipper.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q38', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q38"></div>
+            </div>
+
+            <!-- Q39 -->
+            <div class="question">
+                <div class="question-text">39. Goods in transit should be included in the inventory of the</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q39" id="q39-a" value="a">
+                        <label for="q39-a">a. buyer when the terms are FOB destination.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q39" id="q39-b" value="b">
+                        <label for="q39-b">b. buyer when the terms are FOB shipping point.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q39" id="q39-c" value="c">
+                        <label for="q39-c">c. transportation company when the terms are FOB destination.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q39" id="q39-d" value="d">
+                        <label for="q39-d">d. seller when the terms are FOB shipping point.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q39', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q39"></div>
+            </div>
+
+            <!-- Q40 -->
+            <div class="question">
+                <div class="question-text">40. Shipping terms of FOB origin mean that the</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q40" id="q40-a" value="a">
+                        <label for="q40-a">a. seller is responsible for the shipping charges.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q40" id="q40-b" value="b">
+                        <label for="q40-b">b. shipping charges are debited to Freight Out.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q40" id="q40-c" value="c">
+                        <label for="q40-c">c. items should be in the purchaser's inventory account at year-end if the items are in transit.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q40" id="q40-d" value="d">
+                        <label for="q40-d">d. ownership changes when the goods arrive at the buyer's receiving dock.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q40', 'c')">Check Answer</button>
+                <div class="feedback" id="feedback-q40"></div>
+            </div>
+
+            <!-- Q41 -->
+            <div class="question">
+                <div class="question-text">41. The inventory methods that result in the most current costs in the income statement and balance sheet are:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q41" id="q41-a" value="a">
+                        <label for="q41-a">a. Income Statement: FIFO | Balance Sheet: FIFO</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q41" id="q41-b" value="b">
+                        <label for="q41-b">b. Income Statement: LIFO | Balance Sheet: FIFO</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q41" id="q41-c" value="c">
+                        <label for="q41-c">c. Income Statement: LIFO | Balance Sheet: LIFO</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q41" id="q41-d" value="d">
+                        <label for="q41-d">d. Income Statement: FIFO | Balance Sheet: LIFO</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q41', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q41"></div>
+            </div>
+
+            <!-- Q42 -->
+            <div class="question">
+                <div class="question-text">42. In periods of rising prices, LIFO will produce:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q42" id="q42-a" value="a">
+                        <label for="q42-a">a. lower net income than FIFO.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q42" id="q42-b" value="b">
+                        <label for="q42-b">b. higher net income than FIFO.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q42" id="q42-c" value="c">
+                        <label for="q42-c">c. higher net income than specific identification.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q42" id="q42-d" value="d">
+                        <label for="q42-d">d. higher net income than average costing.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q42', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q42"></div>
+            </div>
+
+            <!-- Q43 -->
+            <div class="question">
+                <div class="question-text">43. In a period of rising prices, the inventory method that results in the lowest income tax payment is</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q43" id="q43-a" value="a">
+                        <label for="q43-a">a. LIFO.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q43" id="q43-b" value="b">
+                        <label for="q43-b">b. FIFO.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q43" id="q43-c" value="c">
+                        <label for="q43-c">c. average cost.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q43" id="q43-d" value="d">
+                        <label for="q43-d">d. specific identification.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q43', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q43"></div>
+            </div>
+
+            <!-- Q44 -->
+            <div class="question">
+                <div class="question-text">44. The FIFO inventory method assumes that the cost of the earliest units purchased are the</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q44" id="q44-a" value="a">
+                        <label for="q44-a">a. last to be allocated to the beginning inventory.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q44" id="q44-b" value="b">
+                        <label for="q44-b">b. first to be allocated to the cost of goods sold.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q44" id="q44-c" value="c">
+                        <label for="q44-c">c. first to be allocated to the ending inventory.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q44" id="q44-d" value="d">
+                        <label for="q44-d">d. last to be allocated to the cost of goods sold.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q44', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q44"></div>
+            </div>
+
+            <!-- Q45 -->
+            <div class="question">
+                <div class="question-text">45. In a period of rising prices, the inventory method that will show the highest net income is:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q45" id="q45-a" value="a">
+                        <label for="q45-a">a. Average Cost.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q45" id="q45-b" value="b">
+                        <label for="q45-b">b. FIFO.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q45" id="q45-c" value="c">
+                        <label for="q45-c">c. LIFO.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q45" id="q45-d" value="d">
+                        <label for="q45-d">d. Specific Identification.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q45', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q45"></div>
+            </div>
+
+            <!-- Q46 -->
+            <div class="question">
+                <div class="question-text">46. If ending inventory is overstated, net income and assets will be</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q46" id="q46-a" value="a">
+                        <label for="q46-a">a. Net Income: Understated | Assets: Understated</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q46" id="q46-b" value="b">
+                        <label for="q46-b">b. Net Income: Understated | Assets: Overstated</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q46" id="q46-c" value="c">
+                        <label for="q46-c">c. Net Income: Overstated | Assets: Overstated</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q46" id="q46-d" value="d">
+                        <label for="q46-d">d. Net Income: Overstated | Assets: Understated</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q46', 'c')">Check Answer</button>
+                <div class="feedback" id="feedback-q46"></div>
+            </div>
+
+            <!-- Q47 -->
+            <div class="question">
+                <div class="question-text">47. Which of the following would most likely employ the specific identification method of inventory costing?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q47" id="q47-a" value="a">
+                        <label for="q47-a">a. Grocery store.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q47" id="q47-b" value="b">
+                        <label for="q47-b">b. Jewelry store.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q47" id="q47-c" value="c">
+                        <label for="q47-c">c. Hardware store.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q47" id="q47-d" value="d">
+                        <label for="q47-d">d. Gasoline station.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q47', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q47"></div>
+            </div>
+
+            <!-- Q48 -->
+            <div class="question">
+                <div class="question-text">48. A company just starting business made the following purchases in August:<br><br>
+                <table class="data-table">
+                    <tr><th>Date</th><th>Units</th><th>Cost</th></tr>
+                    <tr><td>August 1</td><td>300 units</td><td>$1,560</td></tr>
+                    <tr><td>August 12</td><td>400 units</td><td>$2,340</td></tr>
+                    <tr><td>August 24</td><td>400 units</td><td>$2,520</td></tr>
+                    <tr><td>August 30</td><td>300 units</td><td>$1,980</td></tr>
+                    <tr><td><strong>Total</strong></td><td><strong>1,400 units</strong></td><td><strong>$8,400</strong></td></tr>
+                </table><br>
+                Sales for August were 500 units on August 20 and 400 units on August 31. A physical count of the inventory on August 31 reveals that there are 500 units on hand. Using the FIFO inventory method, the value of the ending inventory on August 31 is</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q48" id="q48-a" value="a">
+                        <label for="q48-a">a. $5,670.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q48" id="q48-b" value="b">
+                        <label for="q48-b">b. $3,240.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q48" id="q48-c" value="c">
+                        <label for="q48-c">c. $5,160.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q48" id="q48-d" value="d">
+                        <label for="q48-d">d. $2,730.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q48', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q48"></div>
+            </div>
+
+            <!-- Q49 -->
+            <div class="question">
+                <div class="question-text">49. Samson Company had the following balances and transactions during the year:<br><br>
+                Beginning inventory: 10 units at $70<br>
+                March 10: Sold 8 units<br>
+                June 10: Purchased 20 units at $80<br>
+                October 30: Sold 15 units<br><br>
+                What is the company's cost of goods sold if the perpetual FIFO costing method is used?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q49" id="q49-a" value="a">
+                        <label for="q49-a">a. $1,760</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q49" id="q49-b" value="b">
+                        <label for="q49-b">b. $1,610</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q49" id="q49-c" value="c">
+                        <label for="q49-c">c. $1,740</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q49" id="q49-d" value="d">
+                        <label for="q49-d">d. $1,840</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q49', 'c')">Check Answer</button>
+                <div class="feedback" id="feedback-q49"></div>
+            </div>
+
+            <!-- Q50 -->
+            <div class="question">
+                <div class="question-text">50. A company just starting business purchased three inventory items at the following prices: first purchase $520; second purchase $550; third purchase $580. If two items were sold during the period and the company used the LIFO costing method, the gross profit for the period would be how much greater or less than if the FIFO costing method had been used?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q50" id="q50-a" value="a">
+                        <label for="q50-a">a. Gross profit would be $60 greater.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q50" id="q50-b" value="b">
+                        <label for="q50-b">b. Gross profit would be $60 less.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q50" id="q50-c" value="c">
+                        <label for="q50-c">c. Gross profit would be the same.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q50" id="q50-d" value="d">
+                        <label for="q50-d">d. Gross profit would be $30 greater.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q50', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q50"></div>
+            </div>
+
+            <!-- Q51 -->
+            <div class="question">
+                <div class="question-text">51. A company just starting business made the following purchases in August:<br><br>
+                <table class="data-table">
+                    <tr><th>Date</th><th>Units</th><th>Cost</th></tr>
+                    <tr><td>August 1</td><td>300 units</td><td>$1,560</td></tr>
+                    <tr><td>August 12</td><td>400 units</td><td>$2,340</td></tr>
+                    <tr><td>August 24</td><td>400 units</td><td>$2,520</td></tr>
+                    <tr><td>August 30</td><td>300 units</td><td>$1,980</td></tr>
+                    <tr><td><strong>Total</strong></td><td><strong>1,400 units</strong></td><td><strong>$8,400</strong></td></tr>
+                </table><br>
+                Sales for August were 500 units on August 20 and 400 units on August 31. A physical count of the inventory on August 31 reveals that there are 500 units on hand. Using the LIFO inventory method, the value of the ending inventory on August 31 is</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q51" id="q51-a" value="a">
+                        <label for="q51-a">a. $5,670.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q51" id="q51-b" value="b">
+                        <label for="q51-b">b. $2,930.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q51" id="q51-c" value="c">
+                        <label for="q51-c">c. $5,470.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q51" id="q51-d" value="d">
+                        <label for="q51-d">d. $2,730.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q51', 'b')">Check Answer</button>
+                <div class="feedback" id="feedback-q51"></div>
+            </div>
+
+            <!-- Q52 -->
+            <div class="question">
+                <div class="question-text">52. The following lots of a particular commodity were available for sale during the year:<br>
+                Beginning inventory: 10 units at $61<br>
+                First purchase: 25 units at $63<br>
+                Second purchase: 30 units at $64<br>
+                Third purchase: 15 units at $73<br><br>
+                The firm uses the periodic system and there are 20 units of the commodity on hand at the end of the year. What is the amount of the inventory at the end of the year according to the average cost method?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q52" id="q52-a" value="a">
+                        <label for="q52-a">a. $1,300</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q52" id="q52-b" value="b">
+                        <label for="q52-b">b. $1,305</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q52" id="q52-c" value="c">
+                        <label for="q52-c">c. $1,415</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q52" id="q52-d" value="d">
+                        <label for="q52-d">d. $1,236</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q52', 'a')">Check Answer</button>
+                <div class="feedback" id="feedback-q52"></div>
+            </div>
+
+            <!-- Q53 -->
+            <div class="question">
+                <div class="question-text">53. S. Hagger Sounds has accumulated the following cost and market data on March 31:<br><br>
+                <table class="data-table">
+                    <tr><th>Item</th><th>Cost</th><th>Market</th></tr>
+                    <tr><td>Stereos</td><td>$24,000</td><td>$20,400</td></tr>
+                    <tr><td>Radios</td><td>$18,000</td><td>$19,000</td></tr>
+                    <tr><td>CDs</td><td>$28,000</td><td>$25,600</td></tr>
+                </table><br>
+                Using the lower of cost or market, the value of the ending inventory is:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q53" id="q53-a" value="a">
+                        <label for="q53-a">a. $65,000.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q53" id="q53-b" value="b">
+                        <label for="q53-b">b. $70,000.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q53" id="q53-c" value="c">
+                        <label for="q53-c">c. $71,000.</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q53" id="q53-d" value="d">
+                        <label for="q53-d">d. $64,000.</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q53', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q53"></div>
+            </div>
+
+            <!-- Q54 -->
+            <div class="question">
+                <div class="question-text">54. The inventory of Oheto Company on December 31 consists of the following items:<br><br>
+                <table class="data-table">
+                    <tr><th>Part</th><th>Quantity</th><th>Cost Per Unit</th><th>Market Value Per Unit</th></tr>
+                    <tr><td colspan="4"><strong>Wallets:</strong></td></tr>
+                    <tr><td>110</td><td>600</td><td>$95</td><td>$100</td></tr>
+                    <tr><td>111</td><td>1,000</td><td>$60</td><td>$52</td></tr>
+                    <tr><td colspan="4"><strong>Bill clips:</strong></td></tr>
+                    <tr><td>112</td><td>500</td><td>$80</td><td>$76</td></tr>
+                    <tr><td>113</td><td>200</td><td>$170</td><td>$180</td></tr>
+                    <tr><td colspan="4"><strong>Coin purses:</strong></td></tr>
+                    <tr><td>120</td><td>400</td><td>$205</td><td>$208</td></tr>
+                    <tr><td>122</td><td>300</td><td>$240</td><td>$235</td></tr>
+                </table><br>
+                What is the inventory to be reported on the December 31 balance sheet using LCM?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" name="q54" id="q54-a" value="a">
+                        <label for="q54-a">a. $295,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q54" id="q54-b" value="b">
+                        <label for="q54-b">b. $290,500</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q54" id="q54-c" value="c">
+                        <label for="q54-c">c. $286,000</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="q54" id="q54-d" value="d">
+                        <label for="q54-d">d. $284,000</label>
+                    </div>
+                </div>
+                <button class="check-btn" onclick="checkAnswer('q54', 'd')">Check Answer</button>
+                <div class="feedback" id="feedback-q54"></div>
+            </div>
+        </div>
+
+        <button class="submit-btn" onclick="calculateScore()">Submit Final Exam Prep</button>
+
+        <div class="score-display" id="scoreDisplay">
+            <h2>Your Results</h2>
+            <div class="score" id="finalScore"></div>
+            <p id="scoreMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        let answeredQuestions = new Set();
+        const totalQuestions = 54;
+
+        function checkAnswer(questionId, correctAnswer) {
+            const selected = document.querySelector(`input[name="${questionId}"]:checked`);
+            const feedback = document.getElementById(`feedback-${questionId}`);
+
+            if (!selected) {
+                alert('Please select an answer first!');
+                return;
+            }
+
+            const isCorrect = selected.value === correctAnswer;
+
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✓ Correct! Great job!';
+                answeredQuestions.add(questionId);
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = `✗ Incorrect. The correct answer is ${correctAnswer.toUpperCase()}.`;
+            }
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = (answeredQuestions.size / totalQuestions) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = `${answeredQuestions.size}/${totalQuestions} (${Math.round(progress)}%)`;
+        }
+
+        function calculateScore() {
+            let score = 0;
+            const correctAnswers = {
+                'q1': 'a', 'q2': 'b', 'q3': 'd', 'q4': 'a', 'q5': 'd', 'q6': 'b', 'q7': 'c', 'q8': 'c',
+                'q9': 'b', 'q10': 'd', 'q11': 'd', 'q12': 'a', 'q13': 'd', 'q14': 'a', 'q15': 'b',
+                'q16': 'a', 'q17': 'c', 'q18': 'd', 'q19': 'a', 'q20': 'd', 'q21': 'b', 'q22': 'a',
+                'q23': 'd', 'q24': 'd', 'q25': 'c', 'q26': 'd', 'q27': 'b', 'q28': 'b', 'q29': 'a',
+                'q30': 'c', 'q31': 'b', 'q32': 'b', 'q33': 'd', 'q34': 'b', 'q35': 'a', 'q36': 'd',
+                'q37': 'a', 'q38': 'b', 'q39': 'b', 'q40': 'c', 'q41': 'b', 'q42': 'a', 'q43': 'a',
+                'q44': 'b', 'q45': 'b', 'q46': 'c', 'q47': 'b', 'q48': 'b', 'q49': 'c', 'q50': 'b',
+                'q51': 'b', 'q52': 'a', 'q53': 'd', 'q54': 'd'
+            };
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const questionId = `q${i}`;
+                const selected = document.querySelector(`input[name="${questionId}"]:checked`);
+                if (selected && selected.value === correctAnswers[questionId]) {
+                    score++;
+                }
+            }
+
+            const percentage = ((score / totalQuestions) * 100).toFixed(1);
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const finalScore = document.getElementById('finalScore');
+            const scoreMessage = document.getElementById('scoreMessage');
+
+            finalScore.textContent = `${score}/${totalQuestions} (${percentage}%)`;
+
+            if (percentage >= 90) {
+                scoreMessage.textContent = 'Outstanding! You\'re ready for the exam!';
+            } else if (percentage >= 80) {
+                scoreMessage.textContent = 'Great work! Review the questions you missed.';
+            } else if (percentage >= 70) {
+                scoreMessage.textContent = 'Good effort! Keep studying and try again.';
+            } else {
+                scoreMessage.textContent = 'Keep practicing! Review the materials and retake this quiz.';
+            }
+
+            scoreDisplay.style.display = 'block';
+            scoreDisplay.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
